@@ -1,0 +1,23 @@
+{
+  "name": "nalemischema",
+  "displayName": "nalemischema",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "NALEMI",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "NalemiSchema",
+        "uiTheme": "vs",
+        "path": "./themes/NalemiSchema-color-theme.json"
+      }
+    ]
+  }
+}
