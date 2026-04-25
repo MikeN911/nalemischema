@@ -52,12 +52,22 @@
 				"keyword.other.namespace.php",
 				"keyword.other.use.php",
 				"keyword.control.php",
-				"keyword.other.use-as.php"
+				"keyword.other.use-as.php",
+				"variable.language.this.php"
 			],
 			"settings": {
 				"foreground": "#00F"
 			}
 		},
+				{
+			"scope": [
+				"variable.other.property.php"
+			],
+			"settings": {
+				"foreground": "#000"
+			}
+		},
+			
 		{
 			"scope": "keyword.operator.assignment.php",
 			"settings": {
@@ -77,8 +87,6 @@
 		},
 		{
 			"scope": [
-				"punctuation.terminator.expression.php",
-				"punctuation.separator.namespace.php",
 				"meta.array.php"
 			],
 			"settings": {
@@ -88,15 +96,16 @@
 		{
 			"scope": [
 				"meta.namespace.php",
-				"punctuation.separator.namespace.php"
+				"punctuation.separator.namespace.php",
+				"punctuation.terminator.expression.php",
+
 			],
 			"settings": {
-				"foreground": "#999999"
+				"foreground": "#000"
 			}
 		},
 		{
 			"scope": [
-				"meta.class.php",
 				"storage.type.class.php",
 				"storage.modifier",
 				"storage.type",
@@ -105,10 +114,20 @@
 				"keyword.other.new.php",
 				"keyword.other.function.use.php",
 				"keyword.operator.logical.php",
-				"keyword.operator.comparison.php"
+				"keyword.operator.comparison.php",
+				"support.function.file.php"
 			],
 			"settings": {
 				"foreground": "#009"
+			}
+		},
+				{
+			"scope": [
+				"meta.class.php",
+				"meta.method-call.php"
+			],
+			"settings": {
+				"foreground": "#000"
 			}
 		},
 		{
@@ -157,7 +176,8 @@
 		{
 			"scope": [
 				"meta.block.php meta.path.php",
-				"support.class.php"
+				"support.class.php",
+				"support.class.builtin.php"
 			],
 			"settings": {
 				"foreground": "#DA564A"
@@ -222,7 +242,6 @@
 				"support.function.string.php",
 				"support.function.math.php",
 				"support.function.datetime.php",
-				"support.function.file.php"
 			],
 			"settings": {
 				"foreground": "#555555"
@@ -234,9 +253,12 @@
 				"keyword.control.foreach.php",
 				"keyword.control.if.php",
 				"keyword.control.else.php",
+				"keyword.control.elseif.php",
 				"storage.modifier.php",
 				"keyword.control.return.php",
-				"keyword.control.default.php"
+				"keyword.control.default.php",
+				"keyword.control.while.php",
+				"storage.type.php"
 			],
 			"settings": {
 				"foreground": "#0000FF"
@@ -250,7 +272,7 @@
 		},
 		{
 			"scope": [
-				"entity.name.function.php",
+				
 				"meta.function-call.php",
 				"support.function.string.php",
 				"storage.modifier.php",
@@ -259,7 +281,8 @@
 				"keyword.operator.logical.php",
 				"punctuation.definition.arguments.begin.bracket.round.php",
 				"punctuation.definition.arguments.end.bracket.round.php",
-				"support.function.array.php"
+				"support.function.array.php",
+				"support.function.network.php"
 			],
 			"settings": {
 				"foreground": "#0000ae"
@@ -276,7 +299,6 @@
 		{
 			"scope": [
 				"meta.function.parameters.php support.class.php",
-				"storage.type.php"
 			],
 			"settings": {
 				"foreground": "#000000"
@@ -304,15 +326,7 @@
 				"foreground": "#999999"
 			}
 		},
-		{
-			"scope": [
-				"entity.name.tag",
-				"entity.other.attribute-name"
-			],
-			"settings": {
-				"foreground": "#DA564A"
-			}
-		},
+
 		{
 			"scope": "custom.compiler.blade.php punctuation.section.embedded.php constant.other.inline-data.html",
 			"settings": {
@@ -337,6 +351,15 @@
 		},
 		{
 			"scope": [
+				"meta.tag.metadata.script.start.html",
+				"meta.tag.metadata.script.end.html"
+			],
+			"settings": {
+				"foreground": "#DA564A"
+			}
+		},
+		{
+			"scope": [
 				"string.quoted.double.html",
 				"string.quoted.single.html"
 			],
@@ -351,7 +374,10 @@
 			}
 		},
 				{
-			"scope": "meta.class-name.html",
+			"scope": [
+				"meta.class-name.html",
+				"string.quoted.double.html"
+			],
 			"settings": {
 				"foreground": "#00F"
 			}
@@ -528,7 +554,13 @@
 		{
 			"scope": "support.type.property-name.css",
 			"settings": {
-				"foreground": "#0077AA"
+				"foreground": "#009"
+			}
+		},
+		{
+			"scope": "support.constant.property-value.css",
+			"settings": {
+				"foreground": "#00f"
 			}
 		},
 		{
@@ -888,6 +920,12 @@
 			}
 		},
 		{
+			"scope": "entity.name.function.js",
+			"settings": {
+				"foreground": "#990099"
+			}
+		},
+		{
 			"scope": [
 				"keyword.control.import-export.js",
 				"meta.object-literal.key.js",
@@ -904,7 +942,7 @@
 				"source.js.embedded.html",
 				"source.js",
 				"meta.function.declaration.js",
-				"entity.name.function.js",
+				"variable.other.readwrite.js"
 			],
 			"settings": {
 				"foreground": "#000"
@@ -925,8 +963,8 @@
 			"scope": [
 				"variable.function.js",
 				"variable.parameter.function.js",
-				"entity.name.function.js",
-				"meta.property.object.js"
+				"meta.property.object.js",
+				"meta.definition.function.js"
 			],
 			"settings": {
 				"foreground": "#555"
@@ -936,7 +974,6 @@
 			"scope": [
 				"meta.function-call.js",
 				"variable.function.js",
-				"variable.other.readwrite.js",
 				"embedding.php text.html.basic meta.tag.inline.any.html entity.name.tag.inline.any.html",
                 "embedding.php text.html.basic meta.tag.inline.any.html punctuation.definition.tag.begin.html",
                 "embedding.php text.html.basic meta.tag.inline.any.html meta.attribute-with-value.html entity.other.attribute-name.html",
