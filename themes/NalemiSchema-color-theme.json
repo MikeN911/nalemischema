@@ -28,7 +28,7 @@
 		"terminal.ansiWhite": "#ffffff",
 		"terminal.ansiYellow": "#eebb6e",
 		"terminal.background": "#eeeeee",
-		"terminal.foreground": "#000000",
+		"terminal.foreground": "#000000"
 	},
 	"tokenColors": [
 		{
@@ -97,7 +97,7 @@
 			"scope": [
 				"meta.namespace.php",
 				"punctuation.separator.namespace.php",
-				"punctuation.terminator.expression.php",
+				"punctuation.terminator.expression.php"
 
 			],
 			"settings": {
@@ -241,7 +241,7 @@
 				"support.function.info.php",
 				"support.function.string.php",
 				"support.function.math.php",
-				"support.function.datetime.php",
+				"support.function.datetime.php"
 			],
 			"settings": {
 				"foreground": "#555555"
@@ -298,7 +298,7 @@
 		},
 		{
 			"scope": [
-				"meta.function.parameters.php support.class.php",
+				"meta.function.parameters.php support.class.php"
 			],
 			"settings": {
 				"foreground": "#000000"
