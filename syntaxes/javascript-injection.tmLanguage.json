@@ -1,0 +1,16 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "JavaScript Injection for NalemiSchema",
+	"scopeName": "javascript.nalemi.injection",
+	"injectionSelector": "L:source.js - (comment | string)",
+	"patterns": [
+		{
+			"name": "support.class.builtin.js",
+			"match": "\\b(Date|Array|Boolean|Function|Math|Number|Object|RegExp|String|Promise|Error|JSON|Map|Set|WeakMap|WeakSet|Symbol|BigInt|ArrayBuffer|DataView|Intl)\\b"
+		},
+		{
+			"name": "support.type.object.dom.js",
+			"match": "\\b(window|document|location|navigator|history|screen|console|localStorage|sessionStorage)\\b"
+		}
+	]
+}

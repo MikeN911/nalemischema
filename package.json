@@ -2,21 +2,52 @@
   "name": "nalemischema",
   "displayName": "nalemischema",
   "description": "Light color theme for Visual Studio Code and Antigravity IDE.",
-  "version": "0.0.6",
+  "version": "0.1.3",
   "publisher": "NALEMI",
   "license": "MIT",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:php"
+  ],
   "engines": {
     "vscode": ">=1.90.0"
   },
   "categories": [
-    "Themes"
+    "Themes",
+    "Programming Languages"
   ],
   "contributes": {
+    "configuration": {
+      "title": "NalemiSchema",
+      "properties": {
+        "nalemischema.phpBackground.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Zvýraznit pozadí PHP bloků odlišnou barvou (HTML zůstává bílé)."
+        },
+        "nalemischema.phpBackground.color": {
+          "type": "string",
+          "default": "#E9E9E9",
+          "description": "Barva pozadí pro PHP bloky v PHP souborech (výchozí: #E9E9E9 jako v Sublime Textu)."
+        }
+      }
+    },
     "themes": [
       {
         "label": "NalemiSchema",
         "uiTheme": "vs",
         "path": "./themes/NalemiSchema-color-theme.json"
+      }
+    ],
+    "grammars": [
+      {
+        "scopeName": "javascript.nalemi.injection",
+        "path": "./syntaxes/javascript-injection.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "text.html.php",
+          "text.html.basic"
+        ]
       }
     ]
   }
