@@ -2,7 +2,7 @@
   "name": "nalemischema",
   "displayName": "nalemischema",
   "description": "Light color theme for Visual Studio Code and Antigravity IDE.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "NALEMI",
   "license": "MIT",
   "main": "./extension.js",

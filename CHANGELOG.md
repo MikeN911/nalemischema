@@ -2,6 +2,11 @@
 
 Všechny významné změny v rozšíření NalemiSchema jsou dokumentovány v tomto souboru.
 
+## [0.1.4] - 2026-09-10
+
+- **Hledání a rámečky:** Přidána explicitní konfigurace barev pro vyhledávání (`editor.findMatch*`, `searchEditor.*`) a nulové/transparentní ohraničení (`border: #00000000` a `border: 'none'`), aby při vyhledávání nevznikaly nechtěné bílé rámečky a linky.
+- **Postranní panel hledání:** Sjednoceno pozadí postranního panelu a seznamů (`sideBar.background`, `list.*`), aby výsledky hledání měly čistý a konzistentní podklad.
+
 ## [0.1.3] - 2026-09-10
 
 - **Výběr textu:** Přidána automatická alfa-průhlednost podbarvení PHP bloků (`rgba`), aby nativní žluté označení výběru textu (`editor.selectionBackground`) plně prosvítalo a bylo zřetelně čitelné.

@@ -45,12 +45,14 @@ function getDecorationTypes() {
 
     inlineDecorationType = vscode.window.createTextEditorDecorationType({
         backgroundColor: color,
-        isWholeLine: false
+        isWholeLine: false,
+        border: 'none'
     });
 
     lineDecorationType = vscode.window.createTextEditorDecorationType({
         backgroundColor: color,
-        isWholeLine: true
+        isWholeLine: true,
+        border: 'none'
     });
 }
 
