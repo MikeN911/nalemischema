@@ -45,14 +45,12 @@ function getDecorationTypes() {
 
     inlineDecorationType = vscode.window.createTextEditorDecorationType({
         backgroundColor: color,
-        isWholeLine: false,
-        border: 'none'
+        isWholeLine: false
     });
 
     lineDecorationType = vscode.window.createTextEditorDecorationType({
         backgroundColor: color,
-        isWholeLine: true,
-        border: 'none'
+        isWholeLine: true
     });
 }
 
@@ -151,32 +149,49 @@ function updateEditorDecorations(editor) {
     const inlineRanges = [];
     const lineRanges = [];
 
-    for (const block of blocks) {
-        const startPos = doc.positionAt(block.start);
-        const endPos = doc.positionAt(block.end);
-        const hasClosingTag = text.slice(block.end - 2, block.end) === '?>';
+	for (const block of blocks) {
+		const startPos = doc.positionAt(block.start);
+		const endPos = doc.positionAt(block.end);
+		const hasClosingTag = text.slice(block.end - 2, block.end) === '?>';
+		const firstLineText = doc.lineAt(startPos.line).text;
+		const isPhpAloneOnFirstLine = /^<\?(?:php)?\s*$/i.test(firstLineText);
 
-        if (startPos.line === endPos.line) {
-            // Single line block: <?php ... ?> or <?=$var?>
-            // Whitespace before <? and after ?> remains untouched (white)
-            inlineRanges.push(new vscode.Range(startPos, endPos));
-        } else {
-            // Multi-line block
-            // 1. First line: begins strictly at startPos (<?php)
-            // Whitespace before <?php remains untouched (white)
-            const firstLineText = doc.lineAt(startPos.line).text;
-            inlineRanges.push(new vscode.Range(startPos, new vscode.Position(startPos.line, firstLineText.length)));
+		if (startPos.line === endPos.line) {
+			// Jednořádkový blok: <?php ... ?> nebo <?=$var?>
+			if (isPhpAloneOnFirstLine) {
+				lineRanges.push(new vscode.Range(startPos.line, 0, startPos.line, 0));
+			} else {
+				// Odsazení před <? a text po ?> zůstávají bez podbarvení
+				inlineRanges.push(new vscode.Range(startPos, endPos));
+			}
+		} else {
+			// Víceřádkový blok
+			// 1. První řádek: pokud je <?php sám na řádku bez mezer před ním a bez ?>, podbarví se celý řádek
+			if (isPhpAloneOnFirstLine) {
+				lineRanges.push(new vscode.Range(startPos.line, 0, startPos.line, 0));
+			} else {
+				// Odsazení nebo text před <?php zůstává bez podbarvení
+				inlineRanges.push(new vscode.Range(startPos, new vscode.Position(startPos.line, firstLineText.length)));
+			}
 
-            // 2. Intermediate lines: purely PHP code
-            for (let l = startPos.line + 1; l < endPos.line; l++) {
-                lineRanges.push(new vscode.Range(l, 0, l, 0));
-            }
+			// 2. Mezilehlé a koncové řádky
+			if (hasClosingTag) {
+				// Mezilehlé řádky: čistě PHP kód
+				for (let l = startPos.line + 1; l < endPos.line; l++) {
+					lineRanges.push(new vscode.Range(l, 0, l, 0));
+				}
 
-            // 3. Last line: from column 0 (indentation before ?>) up to endPos (?>)
-            // Whitespace before ?> has background; anything after ?> remains untouched (white)
-            inlineRanges.push(new vscode.Range(new vscode.Position(endPos.line, 0), endPos));
-        }
-    }
+				// 3. Poslední řádek: od sloupce 0 (odsazení před ?>) až po endPos (?>)
+				// Odsazení před ?> má podbarvení; cokoliv za ?> zůstává bez podbarvení
+				inlineRanges.push(new vscode.Range(new vscode.Position(endPos.line, 0), endPos));
+			} else {
+				// Bez uzavíracího tagu ?>: všechny zbývající řádky až do konce souboru jsou čistě PHP
+				for (let l = startPos.line + 1; l <= endPos.line; l++) {
+					lineRanges.push(new vscode.Range(l, 0, l, 0));
+				}
+			}
+		}
+	}
 
     editor.setDecorations(lineDecorationType, lineRanges);
     editor.setDecorations(inlineDecorationType, inlineRanges);
